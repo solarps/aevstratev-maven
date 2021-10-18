@@ -28,11 +28,7 @@ class StringCollectionImpTest {
 
     @Test
     public void test_get_negative_case() {
-        //expected results
-        String expected = "Index out of bounds";
-        //actual result
-        String actual = stringCollection.get(actualCapacity + 100);
-        Assertions.assertEquals(expected,actual);
+        Assertions.assertThrows(IndexOutOfBoundsException.class,()-> stringCollection.get(actualCapacity + 100));
     }
 
     @Test

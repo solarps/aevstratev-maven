@@ -7,12 +7,7 @@ public class StringCollectionImp implements StringCollection {
 
     @Override
     public String get(int index) {
-        try {
-            return arr[index];
-        }catch (IndexOutOfBoundsException exception){
-            return "Index out of bounds";
-        }
-
+        return arr[index];
     }
 
     @Override
