@@ -8,7 +8,7 @@ public class LoginUtil {
 
 
     static {
-        loginData.put("baklajan", "468s4afsas");
+        loginData.put("baklajan241", "468s4afsas");
         loginData.put("login2", "password2");
         loginData.put("login3", "password3");
         loginData.put("login4", "password4");
@@ -29,13 +29,13 @@ public class LoginUtil {
     }
 
     private static void isLoginValid(String login) {
-        if (!login.matches("[\\w]{5,20}") || !loginData.containsKey(login)) {
+        if (!login.matches("[a-zA-Z0-9|_]{5,20}") || !loginData.containsKey(login)) {
             throw new WrongLoginException("Wrong login");
         }
     }
 
     private static void isPasswordValid(String password) {
-        if (!password.matches("[\\w]{5,20}")) {
+        if (!password.matches("[a-zA-Z0-9|_]{5,20}")) {
             throw new WrongLoginException("Incorrect password");
         }
     }
