@@ -28,13 +28,13 @@ public class LoginUtil {
         return true;
     }
 
-    private static void isLoginValid(String login) {
+    private static void isLoginValid(String login) throws WrongLoginException{
         if (!login.matches("[a-zA-Z0-9|_]{5,20}") || !loginData.containsKey(login)) {
             throw new WrongLoginException("Wrong login");
         }
     }
 
-    private static void isPasswordValid(String password) {
+    private static void isPasswordValid(String password) throws WrongPasswordException{
         if (!password.matches("[a-zA-Z0-9|_]{5,20}")) {
             throw new WrongLoginException("Incorrect password");
         }
