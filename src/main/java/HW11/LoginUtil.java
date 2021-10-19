@@ -6,7 +6,6 @@ import java.util.Map;
 public class LoginUtil {
     private static Map<String, String> loginData = new HashMap<>();
 
-
     static {
         loginData.put("baklajan241", "468s4afsas");
         loginData.put("login2", "password2");
@@ -17,7 +16,12 @@ public class LoginUtil {
 
     static boolean isUserAuthentic(String login, String password, String confirmPassword) {
         try {
-            if (!password.equals(confirmPassword)) throw new WrongPasswordException("Confirm password doesn't match");
+            if (login == null) throw new WrongLoginException("Wrong login");
+            if (password == null || confirmPassword == null){
+                throw new WrongPasswordException("Wrong password/confirm password");
+            }
+            if (!password.equals(confirmPassword))
+                throw new WrongPasswordException("Confirm password doesn't match");
             isLoginValid(login);
             isPasswordValid(password);
             if (!password.equals(loginData.get(login))) throw new WrongPasswordException("Wrong password");
@@ -28,16 +32,15 @@ public class LoginUtil {
         return true;
     }
 
-    private static void isLoginValid(String login) throws WrongLoginException{
+    private static void isLoginValid(String login) throws WrongLoginException {
         if (!login.matches("[a-zA-Z0-9|_]{5,20}") || !loginData.containsKey(login)) {
             throw new WrongLoginException("Wrong login");
         }
     }
 
-    private static void isPasswordValid(String password) throws WrongPasswordException{
+    private static void isPasswordValid(String password) throws WrongPasswordException {
         if (!password.matches("[a-zA-Z0-9|_]{5,20}")) {
             throw new WrongLoginException("Incorrect password");
         }
     }
-
 }
